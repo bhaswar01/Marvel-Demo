@@ -23,9 +23,13 @@ This app uses the *Marvel API* i.e https://developer.marvel.com/ to list the mar
 
 Extensions have been used for md5 hashing and Tableview load more feature.
 
+<img width="653" alt="Screenshot 2022-03-21 at 7 00 42 PM" src="https://user-images.githubusercontent.com/92414686/159271324-23150652-b498-41bf-b56c-5a434057e35b.png">
+
+
 An API Helper class has been used for the API intregration work.
 
-*Architecture* : This app is developed using MVVM design pattern which includes three layer i.e Model, View and View model. 
+*Architecture* : This app is developed using MVVM design pattern which includes three layer i.e Model, View and View model.
+
 *Model* : This layer includes parsing of the json coming from the server.
 
 *View* : This layer is reponsible performing the UI Related actions and has the View Controllers.
