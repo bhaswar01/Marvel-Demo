@@ -16,8 +16,7 @@ This app uses the *Marvel API* i.e https://developer.marvel.com/ to list the mar
 
 *CharactersList* : This screen displays all the marvel characters fetched from the API. It have an pagination integrated which gets 10 Marvel characters at a time from the server. As you will reach to the bottom of the list, The app will automatically fetch more characters and will keep adding in the list. It dispays the short description, Name and image of the character.
 
-<img width="653" alt="Screenshot 2022-03-21 at 7 00 42 PM" src="https://user-images.githubusercontent.com/92414686/159271572-0ce59b79-5575-4d40-a172-4011b72c1e4e.png">
-
+<img width="476" alt="Screenshot 2022-03-21 at 7 02 10 PM" src="https://user-images.githubusercontent.com/92414686/159271775-32d2a390-61b8-4250-b2c9-a2129472f774.png">
 
 *CharacterDetails* : This screen displays the Image, full description, name and comics related to the character in the screen.
 
