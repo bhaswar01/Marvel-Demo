@@ -11,8 +11,8 @@ import Kingfisher
 
 class CharacterListCell: UITableViewCell {
 
-    @IBOutlet weak var firstnameLabel: UILabel!
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak private var firstnameLabel: UILabel!
+    @IBOutlet weak private var profileImageView: UIImageView!
     
     var model: CharacterModel?{
         didSet{
@@ -32,8 +32,6 @@ class CharacterListCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
-    
     
 }

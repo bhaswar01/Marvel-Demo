@@ -9,9 +9,7 @@ import Foundation
 
 struct CharacterListDetailsModel: Codable{
     var data: OverallListDetailModelResult
-//    private enum CodingKeys: String, CodingKey{
-//        case data = "data"
-//    }
+
 }
 
 struct OverallListDetailModelResult: Codable{

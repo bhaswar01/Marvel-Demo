@@ -9,12 +9,12 @@ import UIKit
 
 class CharactersListViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    var characterListViewModel = CharacterListViewModel()
-    var characterArray = [CharacterModel]()
-    var offset: Int = 0
-    var limit: Int = 0
-    var countofdata: Int = 0
+    @IBOutlet weak private var tableView: UITableView!
+    private var characterListViewModel = CharacterListViewModel()
+    private var characterArray = [CharacterModel]()
+    private var offset: Int = 0
+    private var limit: Int = 0
+    private var countofdata: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +29,13 @@ class CharactersListViewController: UIViewController {
 
 extension CharactersListViewController
 {
-    func configuration(){
+   private func configuration(){
         tableView.dataSource = self
         tableView.register(UINib(nibName: "CharacterListCell", bundle: nil), forCellReuseIdentifier: "CharacterListCell")
         getAllCharacters(offset: offset , limit: limit)
     }
     
-    func getAllCharacters(offset: Int , limit: Int){
+    private func getAllCharacters(offset: Int , limit: Int){
         characterListViewModel.getAllCharacters(offset: offset , limit: limit) { characterArray in
             
             self.characterArray.append(contentsOf: characterArray)
@@ -66,7 +66,6 @@ extension CharactersListViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
         self.countofdata = APIHelper.shared.countofdata
-//        print("count of data: \(self.countofdata)")
         
         if self.offset > self.countofdata{
             return
@@ -74,12 +73,12 @@ extension CharactersListViewController: UITableViewDelegate{
 
         tableView.addLoading(indexPath) {
 
-            print("Started")
+            debugPrint("Startde")
             self.offset = self.offset + self.limit
-            print(self.offset)
+            debugPrint(self.offset)
             self.getAllCharacters(offset: self.offset, limit: self.limit)
-            print("Ended")
-            tableView.stopLoading() // stop your indicator
+            debugPrint("Ended")
+            tableView.stopLoading()
         }
         
     }
@@ -96,3 +95,4 @@ extension CharactersListViewController: UITableViewDelegate{
     }
     
 }
+

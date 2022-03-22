@@ -11,23 +11,24 @@ import Kingfisher
 class CharacterDetailViewController: UIViewController {
 
     var characterDetailID : Int = 0
-    var characterDetailViewModel = CharacterDetailViewModel()
-    var ComicsArray = [ComicsItems]()
+    private var characterDetailViewModel = CharacterDetailViewModel()
+    private var comicDetailsModel = ComicDetailsViewModel()
+    private var ComicsArray = [ComicsItems]()
     var thumbnail =  [String:String]()
+    private var thumbnailModel = ComicDetailsModel()
     var name : String = ""
     var descriptionStr: String? = ""
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak private var imageView: UIImageView!
+    @IBOutlet weak private var nameLabel: UILabel!
+    @IBOutlet weak private var descLabel: UILabel!
+    @IBOutlet weak private var collectionView: UICollectionView!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("id in details: \(characterDetailID)")
-        // Do any additional setup after loading the view.
+        debugPrint("id in details: \(characterDetailID)")
         configuration()
     }
 }
@@ -39,9 +40,7 @@ extension CharacterDetailViewController{
         return storyboard.instantiateViewController(withIdentifier: "CharacterDetailViewController") as? CharacterDetailViewController
     }
     
-        func configuration(){
-            
-//            collectionView.register(UINib(nibName: "CharacterDetailInfoCVCell", bundle: nil), forCellWithReuseIdentifier: "CharacterDetailInfoCVCell")
+       private func configuration(){
             
             nameLabel.text = name
             nameLabel.textAlignment = .center
@@ -60,22 +59,18 @@ extension CharacterDetailViewController{
             imageView.kf.setImage(with: url, placeholder: UIImage(systemName: "person.circle.fill"))
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
-
-//            tableView.dataSource = self
-//            tableView.register(UINib(nibName: "CharacterListCell", bundle: nil), forCellReuseIdentifier: "CharacterListCell")
             getAllComics(characterDetailID: characterDetailID)
             
         }
         
-        func getAllComics(characterDetailID: Int){
+       private func getAllComics(characterDetailID: Int){
             characterDetailViewModel.getAllComics(CharacterDetailID: characterDetailID) { ComicsArray in
                 
                 self.ComicsArray.append(contentsOf: ComicsArray)
                 
                 DispatchQueue.main.async {
-//                    self.tableView.reloadData()
                     self.collectionView.reloadData()
-                    print("comics array:\(ComicsArray)")
+                    debugPrint("comics array:\(ComicsArray)")
                 }
             }
         }
@@ -85,7 +80,7 @@ extension CharacterDetailViewController{
 extension CharacterDetailViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("comics count: \(ComicsArray.count)")
+        debugPrint("comics count: \(ComicsArray.count)")
         return ComicsArray.count
     }
     
@@ -93,9 +88,12 @@ extension CharacterDetailViewController: UICollectionViewDataSource{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CharacterDetailInfoCVCell", for: indexPath) as? CharacterDetailInfoCVCell else { return UICollectionViewCell() }
 
         let comic = self.ComicsArray[indexPath.row]
+
         cell.configuration(comicsItems: comic)
         return cell
     }
+    
+ 
 }
 
 extension CharacterDetailViewController: UICollectionViewDelegateFlowLayout{
@@ -109,3 +107,7 @@ extension CharacterDetailViewController: UICollectionViewDelegateFlowLayout{
         5//width
     }
 }
+
+
+//6. By defaults property functions will be private then access will be levered up as per requirements
+

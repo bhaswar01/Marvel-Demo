@@ -18,14 +18,12 @@ var md5: String {
         let digest = Insecure.MD5.hash(data: d)
         let h = digest.reduce("") { (res: String, element) in
             let hex = String(format: "%02x", element)
-            //print(ch, hex)
             let  t = res + hex
             return t
         }
         return h
 
     } else {
-        // Fall back to pre iOS13
         let length = Int(CC_MD5_DIGEST_LENGTH)
         var digest = [UInt8](repeating: 0, count: length)
         
@@ -40,8 +38,8 @@ var md5: String {
         }
         return result
 
-    }// end of fall back
+     }
 
- }
+  }
     
 }
