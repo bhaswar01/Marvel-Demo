@@ -45,7 +45,6 @@ extension CharactersListViewController
             }
         }
     }
-    
 }
 
 extension CharactersListViewController: UITableViewDataSource{
@@ -80,7 +79,6 @@ extension CharactersListViewController: UITableViewDelegate{
             debugPrint("Ended")
             tableView.stopLoading()
         }
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -93,6 +91,5 @@ extension CharactersListViewController: UITableViewDelegate{
             self.navigationController?.pushViewController(CharacterDetailViewController, animated: true)
         }
     }
-    
 }
 
